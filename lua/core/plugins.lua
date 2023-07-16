@@ -79,6 +79,12 @@ return packer.startup(
 
 		use("mfussenegger/nvim-jdtls")
 
+		use("onsails/lspkind.nvim")
+		use({
+			"rstacruz/vim-closer",
+			ft = {"java", "kt", "ts", "js", "jsx", "lua"}
+		})
+
 		-- which key
 		use({
 			"folke/which-key.nvim",
