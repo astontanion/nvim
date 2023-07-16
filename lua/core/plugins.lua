@@ -33,6 +33,16 @@ return packer.startup(
 			'nvim-tree/nvim-tree.lua',
 	  		tag = 'nightly'
 		})
+
+		-- which key
+		use({
+			"folke/which-key.nvim",
+			config = function()
+				vim.opt.timeout = true
+				vim.opt.timeoutlen = 300
+			end
+		})
+
 		if packer_bootstrap then
 			require("packer").sync()
 		end
