@@ -61,6 +61,12 @@ return packer.startup(
 		use("/hrsh7th/cmp-buffer")
 		use("/hrsh7th/cmp-path")
 
+		-- treesitter
+		use({
+			"nvim-treesitter/nvim-treesitter",
+			run = ":TSUpdate"
+		})
+
 		-- which key
 		use({
 			"folke/which-key.nvim",
