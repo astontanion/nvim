@@ -27,6 +27,12 @@ return packer.startup(
 		-- color scheme 
 		use("folke/tokyonight.nvim")
 
+		-- lua line
+		use({
+			"nvim-lualine/lualine.nvim",
+			requires = { "nvim-tree/nvim-web-devicons", opt = true }
+		})
+
 		-- nvim tree
 		use("nvim-tree/nvim-web-devicons")
 		use({
