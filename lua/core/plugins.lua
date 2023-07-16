@@ -77,6 +77,8 @@ return packer.startup(
 		use("williamboman/mason.nvim")
 		use("williamboman/mason-lspconfig.nvim")
 
+		use("mfussenegger/nvim-jdtls")
+
 		-- which key
 		use({
 			"folke/which-key.nvim",
