@@ -26,6 +26,12 @@ return packer.startup(
 
 		-- color scheme 
 		use("folke/tokyonight.nvim")
+
+		-- nvim tree
+		use({
+			'nvim-tree/nvim-tree.lua',
+	  		tag = 'nightly'
+		})
 		if packer_bootstrap then
 			require("packer").sync()
 		end
