@@ -52,6 +52,10 @@ return packer.startup(
 			requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
 		})
 
+		-- org mode
+		use("nvim-orgmode/orgmode")
+		use("akinsho/org-bullets.nvim")
+
 		-- which key
 		use({
 			"folke/which-key.nvim",
