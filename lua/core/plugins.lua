@@ -34,6 +34,18 @@ return packer.startup(
 	  		tag = 'nightly'
 		})
 
+		-- telescope
+		use({
+			"nvim-telescope/telescope.nvim",
+			tag = "0.1.2",
+			requires = { { "nvim-lua/plenary.nvim" } }
+		})
+		use("nvim-telescope/telescope-ui-select.nvim")
+		use({
+			"nvim-telescope/telescope-file-browser.nvim",
+			requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+		})
+
 		-- which key
 		use({
 			"folke/which-key.nvim",
