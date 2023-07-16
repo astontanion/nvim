@@ -28,6 +28,7 @@ return packer.startup(
 		use("folke/tokyonight.nvim")
 
 		-- nvim tree
+		use("nvim-tree/nvim-web-devicons")
 		use({
 			'nvim-tree/nvim-tree.lua',
 	  		tag = 'nightly'
