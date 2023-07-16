@@ -79,6 +79,8 @@ return packer.startup(
 
 		use("mfussenegger/nvim-jdtls")
 
+		use("jose-elias-alvarez/typescript.nvim")
+
 		use("onsails/lspkind.nvim")
 		use({
 			"rstacruz/vim-closer",
