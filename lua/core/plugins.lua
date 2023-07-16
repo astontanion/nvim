@@ -67,6 +67,14 @@ return packer.startup(
 			run = ":TSUpdate"
 		})
 
+		-- lsp
+		use("neovim/nvim-lspconfig")
+		use("hrsh7th/cmp-nvim-lsp")
+		use({
+			"glepnir/lspsaga.nvim",
+			branch = "main"
+		})
+
 		-- which key
 		use({
 			"folke/which-key.nvim",
