@@ -56,6 +56,11 @@ return packer.startup(
 		use("nvim-orgmode/orgmode")
 		use("akinsho/org-bullets.nvim")
 
+		-- autocompletion
+		use("/hrsh7th/nvim-cmp")
+		use("/hrsh7th/cmp-buffer")
+		use("/hrsh7th/cmp-path")
+
 		-- which key
 		use({
 			"folke/which-key.nvim",
