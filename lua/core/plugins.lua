@@ -22,6 +22,7 @@ end
 
 return packer.startup(
 	function(use)
+		use("wbthomason/packer.nvim")
 		if packer_bootstrap then
 			require("packer").sync()
 		end
