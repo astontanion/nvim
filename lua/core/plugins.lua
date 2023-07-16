@@ -74,6 +74,8 @@ return packer.startup(
 			"glepnir/lspsaga.nvim",
 			branch = "main"
 		})
+		use("williamboman/mason.nvim")
+		use("williamboman/mason-lspconfig.nvim")
 
 		-- which key
 		use({
