@@ -1,8 +1,8 @@
 local has_telescope, telescope = pcall(require, "telescope")
 
 if not has_telescope then return end
-if not has_builtin then	return end
 
+local file_browser = telescope.extensions.file_browser
 local file_browser_actions = file_browser.actions
 
 telescope.setup({
