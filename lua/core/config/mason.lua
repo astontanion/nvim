@@ -24,6 +24,6 @@ mason_lspconfig.setup({
 		"kotlin_language_server",
 		"ltex",
 		"lua_ls",
-		"pyright"
+		"pyright",
 	}
 })

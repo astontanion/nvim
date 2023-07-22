@@ -23,7 +23,7 @@ if cmp_nvim_lsp_status then
     capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 end
 
-local dap_install_dir = vim.fn.stdpath("data") .. "/mason/packages/java-debug-adpter/extension/server"
+local dap_install_dir = vim.fn.stdpath("data") .. "/mason/packages/java-debug-adapter/extension/server"
 
 local on_attach = function(_, _)
 	local which_key_status, which_key = pcall(require, "which-key")

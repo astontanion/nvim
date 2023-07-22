@@ -87,6 +87,15 @@ return packer.startup(
 			ft = {"java", "kt", "ts", "js", "jsx", "lua"}
 		})
 
+		-- debugger
+		use("mfussenegger/nvim-dap")
+		use({
+			"rcarriga/nvim-dap-ui",
+			require = {
+				"mfussenegger/nvim-dap"
+			}
+		})
+
 		-- which key
 		use({
 			"folke/which-key.nvim",
