@@ -95,6 +95,7 @@ return packer.startup(
 				"mfussenegger/nvim-dap"
 			}
 		})
+		use("theHamsta/nvim-dap-virtual-text")
 
 		-- which key
 		use({
