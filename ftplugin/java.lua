@@ -25,6 +25,8 @@ end
 
 local dap_install_dir = vim.fn.stdpath("data") .. "/mason/packages/java-debug-adapter/extension/server"
 
+local java_test_dir = vim.fn.stdpath("data") .. "/mason/packages/java-test/extension/server"
+
 local on_attach = function(_, _)
 	local which_key_status, which_key = pcall(require, "which-key")
 
@@ -60,6 +62,7 @@ local on_attach = function(_, _)
 
 		local test_keys = {
 			name = "Test",
+			a = { jdtls.test_class, "Test all" },
 			c = {
 				function()
 					local file_path = vim.fn.expand("%:p")
@@ -68,7 +71,8 @@ local on_attach = function(_, _)
 					vim.cmd(":e " .. test_path)
 				end,
 				"Create"
-			}
+			},
+			m = { jdtls.test_nearest_method, "Test method" }
 		}
 
 		local mappings = {
@@ -91,6 +95,21 @@ local on_attach = function(_, _)
 
 	jdtls.setup_dap({ hotcodereplace = 'auto' })
 end
+
+local bundles = {
+	vim.fn.glob(
+		dap_install_dir .. "/com.microsoft.java.debug.plugin-*.jar",
+		1
+	)
+}
+
+vim.list_extend(
+	bundles,
+	vim.split(
+		vim.fn.glob(java_test_dir .. "/*.jar", 1),
+		"\n"
+	)
+)
 
 local config = {
 	flags = {
@@ -168,9 +187,7 @@ local config = {
 		"-data", workspace_folder,
 	},
 	init_options = {
-		bundles = {
-			vim.fn.glob(dap_install_dir .. "/com.microsoft.java.debug.plugin-*.jar", 1)
-		}
+		bundles = bundles
 	}
 }
 
