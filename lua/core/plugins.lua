@@ -26,6 +26,7 @@ return packer.startup(
 
 		-- color scheme 
 		use("folke/tokyonight.nvim")
+		use ({ "catppuccin/nvim", as = "catppuccin" })
 
 		-- lua line
 		use({
