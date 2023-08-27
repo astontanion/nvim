@@ -25,6 +25,7 @@ local file_keys = {
 local buffer_keys = {
 	name = "Buffer",
 	s = { builtin.buffers, "Search"},
+	c = { builtin.spell_suggest, "Checker" }
 }
 
 local search_keys = {
