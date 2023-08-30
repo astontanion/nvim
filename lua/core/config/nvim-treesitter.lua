@@ -4,8 +4,16 @@ if not has_treesitter then return end
 
 treesitter.setup {
 	ensure_installed = {
-		"java", "kotlin", "typescript",
-		"python", "lua", "vim", "org"
+		"java",
+		"kotlin",
+		"typescript",
+		"python",
+		"lua",
+		"vim",
+		"org",
+		"css",
+		"html",
+		"tsx"
 	},
 	sync_install = false,
 	auto_install = true,
@@ -18,6 +26,9 @@ treesitter.setup {
 		enable = false,
 		extended_mode = true,
 		max_file_lines = nil,
+	},
+	autotag = {
+		enable = true
 	}
 }
 
@@ -30,4 +41,8 @@ parser_config.org = {
 		files = { 'src/parser.c', 'src/scanner.c' },
 	},
 	filetype = 'org',
+}
+
+parser_config.tsx = {
+	filetype_to_parsername = { "javascript", "typescript.tsx" }
 }

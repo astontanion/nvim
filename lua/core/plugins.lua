@@ -72,8 +72,11 @@ return packer.startup(
 		use("neovim/nvim-lspconfig")
 		use("hrsh7th/cmp-nvim-lsp")
 		use({
-			"glepnir/lspsaga.nvim",
-			branch = "main"
+			"nvimdev/lspsaga.nvim",
+			require = {
+				"nvim-treesitter/nvim-treesitter",
+				"nvim-tree/nvim-web-devicons"
+			}
 		})
 		use("williamboman/mason.nvim")
 		use("williamboman/mason-lspconfig.nvim")
@@ -87,6 +90,9 @@ return packer.startup(
 			"rstacruz/vim-closer",
 			ft = {"java", "kt", "ts", "js", "jsx", "lua"}
 		})
+
+		use("windwp/nvim-autopairs")
+		use("windwp/nvim-ts-autotag")
 
 		-- debugger
 		use("mfussenegger/nvim-dap")

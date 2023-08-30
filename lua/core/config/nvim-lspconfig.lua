@@ -79,6 +79,21 @@ lspconfig["pyright"].setup({
 
 lspconfig["tsserver"].setup({
 	on_attach = on_attach,
+	filetypes = {
+		"javascript",
+		"javascriptreact",
+		"javascript.jsx",
+		"typescript",
+		"typescriptreact",
+		"typescript.tsx"
+	},
+	cmd = { vim.fn.stdpath("data") .. "/mason/bin/typescript-language-server", "--stdio" },
+	root_pattern = {
+		"package.json",
+		"tsconfig.json",
+		"jsconfig.json",
+		".git"
+	},
 	flags = lsp_flags
 })
 
