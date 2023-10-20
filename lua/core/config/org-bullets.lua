@@ -5,10 +5,12 @@ if not org_bullets_status then
 end
 
 org_bullets.setup {
-	concealcursor = false,
+	show_current_line = false,
+	indent = true,
+	concealcursor = true,
 	symbols = {
 		list = "•",
-		headlines = { "◉", "○", "✸", "✿" },
+		headlines = { "◉", "✸", "✿", "○" },
 		checkboxes = {
 			half = { "", "OrgTSCheckboxHalfChecked" },
 			done = { "✓", "OrgDone" },

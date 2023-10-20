@@ -13,7 +13,7 @@ orgmode.setup({
 		"~/doc/org/tickler.org"
 	},
 	org_default_notes_file = "~/doc/org/inbox.org",
-	org_archive_location = "~/doc/org/inbox.org",
+	org_archive_location = "~/doc/org/archive.org",
 	org_todo_keywords = {
 		"TODO(t)",
 		"INPROGRESS(p)",
@@ -24,6 +24,7 @@ orgmode.setup({
 	},
 	win_split_mode = { "float", 0.75 },
 	win_border = "rounded",
+	org_indent_mode = "indent",
 	org_capture_templates = {
 		d = {
 			description = "Thought",
