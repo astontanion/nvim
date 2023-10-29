@@ -24,6 +24,12 @@ return packer.startup(
 	function(use)
 		use("wbthomason/packer.nvim")
 
+		-- treesitter
+		use({
+			"nvim-treesitter/nvim-treesitter",
+			run = ":TSUpdate"
+		})
+
 		-- color scheme 
 		use("folke/tokyonight.nvim")
 		use({ "catppuccin/nvim", as = "catppuccin" })
@@ -48,26 +54,27 @@ return packer.startup(
 			tag = "0.1.2",
 			requires = { { "nvim-lua/plenary.nvim" } }
 		})
+
 		use("nvim-telescope/telescope-ui-select.nvim")
+
 		use({
 			"nvim-telescope/telescope-file-browser.nvim",
 			requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
 		})
 
-		-- org mode
+		-- notes/organisation 
 		use("nvim-orgmode/orgmode")
 		use("akinsho/org-bullets.nvim")
+
+		use({
+			"nvim-neorg/neorg",
+			run = ":Neorg sync-parsers",
+		})
 
 		-- autocompletion
 		use("/hrsh7th/nvim-cmp")
 		use("/hrsh7th/cmp-buffer")
 		use("/hrsh7th/cmp-path")
-
-		-- treesitter
-		use({
-			"nvim-treesitter/nvim-treesitter",
-			run = ":TSUpdate"
-		})
 
 		-- lsp
 		use("neovim/nvim-lspconfig")
