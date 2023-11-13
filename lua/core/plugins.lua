@@ -33,7 +33,6 @@ return packer.startup(
 		-- color scheme 
 		use("folke/tokyonight.nvim")
 		use({ "catppuccin/nvim", as = "catppuccin" })
-		use("rebelot/kanagawa.nvim")
 
 		-- lua line
 		use({
