@@ -27,7 +27,7 @@ local dap_install_dir = vim.fn.stdpath("data") .. "/mason/packages/java-debug-ad
 
 local java_test_dir = vim.fn.stdpath("data") .. "/mason/packages/java-test/extension/server"
 
-local on_attach = function(_, _)
+local on_attach = function(client, bufnr)
 	local which_key_status, which_key = pcall(require, "which-key")
 
 	if which_key_status then

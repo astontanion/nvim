@@ -25,5 +25,6 @@ mason_lspconfig.setup({
 		"ltex",
 		"lua_ls",
 		"pyright",
+		"gradle_ls",
 	}
 })
