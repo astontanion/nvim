@@ -34,10 +34,16 @@ local search_keys = {
 	g = { builtin.git_files, "In git" },
 }
 
+local help_keys = {
+	name = "Help",
+	o = { builtin.help_tags, "Open" }
+}
+
 local mappings = {
 	s = search_keys,
 	f = file_keys,
-	b = buffer_keys
+	b = buffer_keys,
+	h = help_keys
 }
 
 local options = {
