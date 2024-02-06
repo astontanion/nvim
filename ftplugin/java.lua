@@ -111,6 +111,41 @@ vim.list_extend(
 	)
 )
 
+local is_os_linux = vim.fn.has("linux") > 0
+local is_os_mac = vim.fn.has("mac") > 0
+
+local get_config_type = function()
+	if is_os_linux then return "/config_linux" end
+	if is_os_mac then return "/config_mac" end
+	return "/config_win"
+end
+
+local get_java_runtime = function()
+	if is_os_linux then
+		return {
+			{
+				name = "JavaSE-21",
+				path = "/usr/lib/jvm/java-21-openjdk/",
+			},
+			{
+				name = "JavaSE-17",
+				path = "/usr/lib/jvm/java-17-openjdk/",
+			}
+		}
+	end
+
+	if is_os_mac then
+		return {
+			{
+				name = "JavaSE-21",
+				path = "/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home",
+			},
+		}
+	end
+
+	return {}
+end
+
 local config = {
 	flags = {
 		debounce_text_changes = 80,
@@ -158,16 +193,7 @@ local config = {
 				useBlocks = true,
 			},
 			configuration = {
-				runtimes = {
-					{
-						name = "JavaSE-17",
-						path = "/usr/lib/jvm/java-17-openjdk/",
-					},
-					{
-						name = "JavaSE-11",
-						path = "/usr/lib/jvm/java-11-openjdk/",
-					}
-				}
+				runtimes = get_java_runtime()
 			}
 		}
 	},
@@ -183,7 +209,7 @@ local config = {
 		"--add-opens", "java.base/java.util=ALL-UNNAMED",
 		"--add-opens", "java.base/java.lang=ALL-UNNAMED",
 		"-jar", vim.fn.glob(jdtls_dir .. "/plugins/org.eclipse.equinox.launcher_*.jar", 1),
-		"-configuration", jdtls_dir .. "/config_linux",
+		"-configuration", jdtls_dir .. get_config_type(),
 		"-data", workspace_folder,
 	},
 	init_options = {
