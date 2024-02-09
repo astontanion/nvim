@@ -4,7 +4,6 @@ if not neorg_status then return end
 
 neorg.setup({
 	load = {
-		["core.defaults"] = {},
 		["core.concealer"] = {
 			config = {
 				folds = true,
@@ -20,6 +19,10 @@ neorg.setup({
 				index = "index.norg",
 				use_popup = true
 			}
-		}
+		},
+		["core.defaults"] = {},
+		["core.export"] = {},
+		["core.export.markdown"] = {},
+		["core.integrations.treesitter"] = {}
 	}
 })
