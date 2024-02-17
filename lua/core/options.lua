@@ -25,5 +25,12 @@ vim.opt.mouse = ""
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 999
 vim.opt.updatetime = 50
+
+vim.opt.foldmethod="expr"
+vim.opt.foldexpr="nvim_treesitter#fodlexpr()"
+
+vim.opt.virtualedit = "block"
+vim.opt.inccommand = "split"
+vim.opt.ignorecase = true
