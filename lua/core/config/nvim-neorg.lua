@@ -23,6 +23,7 @@ neorg.setup({
 		["core.defaults"] = {},
 		["core.export"] = {},
 		["core.export.markdown"] = {},
-		["core.integrations.treesitter"] = {}
+		["core.integrations.treesitter"] = {},
+		["core.syntax"] = {},
 	}
 })
