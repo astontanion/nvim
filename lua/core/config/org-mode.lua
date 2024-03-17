@@ -24,7 +24,7 @@ orgmode.setup({
 	},
 	win_split_mode = { "float", 0.75 },
 	win_border = "rounded",
-	org_indent_mode = "indent",
+	org_startup_indented = true,
 	org_capture_templates = {
 		d = {
 			description = "Thought",

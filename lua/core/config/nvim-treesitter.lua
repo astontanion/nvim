@@ -1,8 +1,11 @@
-local has_treesitter, treesitter = pcall(require, "nvim-treesitter.configs")
+local treesitter_configs_status, treesitter_configs = pcall(require, "nvim-treesitter.configs")
 
-if not has_treesitter then return end
+if not treesitter_configs_status then return end
 
-treesitter.setup {
+treesitter_configs.setup({
+	sync_install = false,
+	auto_install = true,
+	modules = {},
 	ensure_installed = {
 		"java",
 		"kotlin",
@@ -10,24 +13,24 @@ treesitter.setup {
 		"python",
 		"lua",
 		"vim",
+		"vimdoc",
 		"org",
 		"css",
 		"html",
-		"tsx"
+		"tsx",
+		"org"
 	},
 	ignore_install = {},
-	sync_install = false,
-	auto_install = true,
 	highlight = {
 		enable = true,
-		disable = {'org'},
-		additional_vim_regex_highlighting = {"org"}
+		disable = { "org" },
+		additional_vim_regex_highlighting = { "org" }
 	},
 	incremental_selection = {
 		enable = true,
 		keymaps = {
 			init_selection = "gnn",
-			code_incremental = "grn",
+			node_incremental = "grn",
 			scope_incremental = "grc",
 			node_decremental = "grm",
 		}
@@ -40,19 +43,8 @@ treesitter.setup {
 	autotag = {
 		enable = true
 	}
-}
+})
 
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
-parser_config.org = {
-	install_info = {
-		url = 'https://github.com/milisims/tree-sitter-org',
-		revision = 'main',
-		files = { 'src/parser.c', 'src/scanner.c' },
-	},
-	filetype = 'org',
-}
-
-parser_config.tsx = {
-	filetype_to_parsername = { "javascript", "typescript.tsx" }
-}
+parser_config.tsx.filetype_to_parsername = { "javascript", "typescript.tsx" }

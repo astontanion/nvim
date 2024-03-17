@@ -1,22 +1,25 @@
-local tree_status, tree = pcall(require, "nvim-tree")
+local nvim_tree_status, nvim_tree = pcall(require, "nvim-tree")
 
-if not tree_status then
+if not nvim_tree_status then
 	return
 end
 
-tree.setup({
+local function on_attach(bufnr)
+	local api = require("nvim-tree.api")
+	api.config.mappings.default_on_attach(bufnr)
+
+end
+
+nvim_tree.setup({
+	on_attach = on_attach,
 	sort_by = "case_sensitive",
     sync_root_with_cwd = true,
 	view = {
 		width = 25,
-        hide_root_folder = true,
-		mappings = {
-			custom_only = true,
-			list = {}
-		}
 	},
 	renderer = {
 		group_empty = true,
+		root_folder_label = ""
 	},
 	filters = {
 		dotfiles = false,
