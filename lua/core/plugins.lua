@@ -42,10 +42,7 @@ return packer.startup(
 
 		-- nvim tree
 		use("nvim-tree/nvim-web-devicons")
-		use({
-			'nvim-tree/nvim-tree.lua',
-	  		tag = 'nightly'
-		})
+		use("nvim-tree/nvim-tree.lua")
 
 		-- telescope
 		use({
