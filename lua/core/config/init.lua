@@ -1,5 +1,5 @@
-require("core.config.catppuccin")
-require("core.config.colors")
+--require("core.config.catppuccin")
+-- require("core.config.colors")
 require("core.config.lualine")
 require("core.config.telescope")
 require("core.config.nvim-tree")
