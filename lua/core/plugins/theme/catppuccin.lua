@@ -2,7 +2,7 @@ return {
 	"catppuccin/nvim",
 	name = "catppuccin",
 	config = function()
-		local status, catppuccin = pcall(require, "core.config.catppuccin")
+		local status, catppuccin = pcall(require, "core.config.theme.catppuccin")
 
 		if not status then return end
 
