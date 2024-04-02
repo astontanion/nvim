@@ -5,7 +5,7 @@ return {
 	},
 	event = 'VeryLazy',
 	config = function()
-		local config_status, config = pcall(require, "core.config.org-mode")
+		local config_status, config = pcall(require, "core.config.notes.orgmode")
 		if not config_status then return end
 		config.configure()
 	end
