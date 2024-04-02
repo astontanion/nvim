@@ -10,12 +10,12 @@ M.configure = function()
 
 	telescope.setup({
 		defaults = {
+			layout_config = {
+				height = 0.50,
+				width = 0.50
+			},
 			path_display = {
-				sorten = {
-					len = 3,
-					exclude = { 1, -1 },
-				},
-				truncate = true
+				smart = true
 			},
 			dynamic_preview_title = true
 		},
