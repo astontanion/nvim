@@ -27,73 +27,29 @@ local dap_install_dir = vim.fn.stdpath("data") .. "/mason/packages/java-debug-ad
 
 local java_test_dir = vim.fn.stdpath("data") .. "/mason/packages/java-test/extension/server"
 
-local on_attach = function(_, _)
-	local which_key_status, which_key = pcall(require, "which-key")
+local on_attach = function(_, bufnr)
+	local mapping_status, mapping = pcall(
+		require,
+		"core.keybinding.lspconfig"
+	)
 
-	if which_key_status then
+	if not mapping_status then return end
 
-		local lsp_keys = {
-			name = "Code",
-			a = { vim.lsp.buf.code_action, "actions" },
-			i = { vim.lsp.buf.implementation, "Go to implementation" },
-			d = { vim.lsp.buf.declaration, "Go to declaration" },
-			f = { vim.lsp.buf.definition, "Go to definition" },
-			r = { vim.lsp.buf.rename, "Rename" },
-			h = { vim.lsp.buf.hover, "Help" },
-			t = { vim.lsp.buf.type_definition, "Type definition" },
-			u = { vim.lsp.buf.references, "References" },
-		}
+	mapping.configure(bufnr)
 
-		local jdtls_keys = {
-			name = "Java",
-			i = { jdtls.organize_imports, "Organize imports" },
-			v = { jdtls.extract_variable, "Extract variable" },
-			c = { jdtls.extract_constant, "Extract constant" },
-			m = { jdtls.extract_method, "Extract method" }
-		}
+	local java_mapping_status, java_mapping = pcall(
+		require,
+		"core.keybinding.java"
+	)
 
-		local diagonostic_keys = {
-			name = "error",
-			o = { vim.diagnostic.open_float, "Open" },
-			l = { vim.diagnostic.setloclist, "List" },
-			n = { vim.diagnostic.goto_next, "Next" },
-			p = { vim.diagnostic.goto_prev, "Previous"}
-		}
+	if not java_mapping_status then return end
 
-		local test_keys = {
-			name = "Test",
-			a = { jdtls.test_class, "Test all" },
-			c = {
-				function()
-					local file_path = vim.fn.expand("%:p")
-					local test_path = string.gsub(file_path, "(%w+)%.java", "%1Test.java")
-					test_path = string.gsub(test_path, "(/src/main/)", "/src/test/")
-					vim.cmd(":e " .. test_path)
-				end,
-				"Create"
-			},
-			m = { jdtls.test_nearest_method, "Test method" }
-		}
+	java_mapping.configure()
 
-		local mappings = {
-			c = lsp_keys,
-			cj = jdtls_keys,
-			ce = diagonostic_keys,
-			ct = test_keys
-		}
-
-		local options = {
-			mode = "n",
-			prefix = "<leader>",
-			silent = true,
-			noremap = true
-		}
-
-		which_key.register(mappings, options)
-
-	end
-
-	jdtls.setup_dap({ hotcodereplace = 'auto' })
+	jdtls.setup_dap({
+		hotcodereplace = 'auto',
+		config_overrides = {}
+	})
 end
 
 local bundles = {

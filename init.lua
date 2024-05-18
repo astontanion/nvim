@@ -1,5 +1,5 @@
 require("core.options")
 require("core.mappings")
 require("core.plugins")
-require("core.config")
 require("core.keybinding")
+require("core.config.lsp.lspconfig").configure()
