@@ -20,14 +20,16 @@ M.configure = function()
 
 	mason_lspconfig.setup({
 		ensure_installed = {
-			"tsserver",
-			"html",
-			"cssls",
 			"jdtls",
 			"kotlin_language_server",
 			"ltex",
 			"lua_ls",
 			"pyright",
+
+			-- web
+			"tsserver",
+			"html",
+			"cssls",
 		}
 	})
 end
