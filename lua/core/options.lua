@@ -30,6 +30,7 @@ vim.opt.updatetime = 50
 
 vim.opt.foldmethod="expr"
 vim.opt.foldexpr="nvim_treesitter#fodlexpr()"
+vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 vim.opt.virtualedit = "block"
 vim.opt.inccommand = "split"

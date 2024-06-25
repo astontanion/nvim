@@ -41,6 +41,18 @@ M.configure = function(bufnr)
 		h = { vim.lsp.buf.hover, "Help" },
 		t = { builtin.lsp_type_definitions, "Type definition" },
 		u = { builtin.lsp_references, "References" },
+		p = {
+			function()
+				local has_conform, conform = pcall(require, "conform")
+				if not has_conform then return end
+				conform.format({
+					timeout = 1000,
+					async = false,
+					lsp_fallback = true
+				})
+			end,
+			"Prettify"
+		}
 	}
 
 	local diagonostic_keys = {

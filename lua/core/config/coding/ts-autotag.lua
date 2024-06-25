@@ -5,7 +5,7 @@ M.configure = function()
 
 	if not has_autotag then return end
 
-	autotag.setup()
+	autotag.setup({})
 end
 
 return M
