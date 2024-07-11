@@ -77,6 +77,7 @@ local get_config_type = function()
 end
 
 local get_java_runtime = function()
+
 	if is_os_linux then
 		return {
 			{
