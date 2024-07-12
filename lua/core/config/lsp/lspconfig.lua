@@ -47,6 +47,19 @@ M.configure = function()
 		flags = lsp_flags
 	})
 
+	lspconfig["tailwindcss"].setup({
+		filetypes = {
+			"html",
+			"javascript",
+			"javascriptreact",
+			"javascript.jsx",
+			"typescript",
+			"typescriptreact",
+			"typescript.tsx"
+		},
+		cmd = { vim.fn.stdpath("data") .. "/mason/bin/tailwindcss-language-server", "--stdio" },
+	})
+
 	lspconfig.lua_ls.setup {
 		on_attach = on_attach,
 		settings = {
