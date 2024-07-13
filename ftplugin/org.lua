@@ -13,87 +13,84 @@ if not which_key_status then
 end
 
 local org_agenda_keys = {
-	name = "Agenda",
-	o = {
-		function()
+	{ lhs = "<leader>a", group = "agenda" },
+	{
+		lhs = "<leader>ao",
+		rhs = function()
 			orgmode.action("agenda.prompt")
-		end ,
-		"Open"
+		end,
+		desc = "Open",
 	},
 }
 
 local org_capture_keys = {
-	name = "Capture",
-	c = {
-		function()
+	{ lhs = "<leader>c", group = "capture" },
+	{
+		lhs = "<leader>cc",
+		rhs = function()
 			orgmode.capture.new()
 		end,
-		"Create"
+		desc = "Create",
 	},
-	e = {
-		function()
+	{
+		lhs = "<leader>ce",
+		rhs = function()
 			orgmode.action("capture.kill")
 		end,
-		"Exit"
+		desc = "Exit",
 	},
-	f = {
-		function()
+	{
+		lhs = "<leader>cf",
+		rhs = function()
 			orgmode.action("capture.finalize")
 		end,
-		"Finish"
+		desc = "Finish",
 	},
-	r = {
-		function()
+	{
+		lhs = "<leader>cr",
+		rhs = function()
 			orgmode.action("capture.refile")
 		end,
-		"Refile"
+		desc = "Refile",
 	},
-	s = {
-		function()
+	{
+		lhs = "<leader>cs",
+		rhs = function()
 			orgmode.action("capture.show_help")
 		end,
-		"Show"
-	}
+		desc = "Show",
+	},
 }
 
 local org_schedule_keys = {
-	name = "Schedule",
-	o = {
-		function()
+	{ mode = "n" },
+	{ lhs = "<leader>s", "schedule" },
+	{
+		lhs = "<leader>so",
+		rhs = function()
 			orgmode.action("agenda.prompt")
-		end ,
-		"Open"
-	}
+		end,
+		desc = "Open",
+	},
 }
 
 local org_todo_keys = {
-	name = "Todo",
-	s = {
-		function()
+	{ mode = "n" },
+	{ lhs = "<leader>t", "todo" },
+	{
+		lhs = "<leader>ts",
+		rhs = function()
 			orgmode.action("agenda.prompt")
-		end ,
-		"State"
-	}
+		end,
+		desc = "State",
+	},
 }
 
 local org_mode_keys = {
-	name = "Org mode",
-	a = org_agenda_keys,
-	c = org_capture_keys,
-	s = org_schedule_keys,
-	t = org_todo_keys
+	org_agenda_keys,
+	org_capture_keys,
+	org_schedule_keys,
+	org_todo_keys,
 }
 
-
-local mappings = {
-	o = org_mode_keys
-}
-
-local options = {
-	mode = "n",
-	prefix = "<leader>",
-	silent = true,
-	noremap = true
-}
-
-which_key.register(mappings, options)
+which_key.add(org_mode_keys)

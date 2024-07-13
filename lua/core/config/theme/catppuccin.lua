@@ -3,7 +3,9 @@ local M = {}
 M.configure = function()
 	local has_catppuccin, catppuccin = pcall(require, "catppuccin")
 
-	if not has_catppuccin then return end
+	if not has_catppuccin then
+		return
+	end
 
 	catppuccin.setup({
 		flavour = "macchiato", -- latte, frappe, macchiato, mocha
@@ -43,16 +45,16 @@ M.configure = function()
 			gitsigns = true,
 			nvimtree = true,
 			treesitter = true,
-			notify = false,
+			notify = true,
 			mini = false,
 			which_key = true,
 			telescope = {
-				enabled = true
+				enabled = true,
 			},
 			dap = {
 				enabled = true,
 				enable_ui = true,
-			}
+			},
 		},
 	})
 end

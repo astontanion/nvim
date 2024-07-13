@@ -4,7 +4,9 @@ return {
 	config = function()
 		local status, catppuccin = pcall(require, "core.config.theme.catppuccin")
 
-		if not status then return end
+		if not status then
+			return
+		end
 
 		catppuccin.configure()
 
@@ -15,5 +17,5 @@ return {
 		if not is_success then
 			vim.notify("The colors scheme " .. colors_scheme .. " was not found!")
 		end
-	end
+	end,
 }

@@ -5,39 +5,31 @@ if not which_key_status then
 end
 
 local window_keys = {
-	name = "window",
-	s = { vim.cmd.split, "split horizontal" },
-	v = { vim.cmd.vsplit, "split vertically"},
-	n = { vim.cmd.new, "new"},
-	c = { vim.cmd.close, "close"},
-	b = { "<c-w>=", "balance"},
 
-	K = { "<c-w>K", "Move up"},
-	J = { "<c-w>J", "Move down"},
-	H = { "<c-w>H", "Move right"},
-	L = { "<c-w>L", "Move left"},
+	{ mode = "n" },
+	{ lhs = "<leader>w", group = "window" },
+	{ lhs = "<leader>ws", rhs = vim.cmd.split, desc = "split horizontal" },
+	{ lhs = "<leader>wv", rhs = vim.cmd.vsplit, desc = "split vertically" },
+	{ lhs = "<leader>wn", rhs = vim.cmd.new, desc = "new" },
+	{ lhs = "<leader>wc", rhs = vim.cmd.close, desc = "close" },
+	{ lhs = "<leader>wb", rhs = "<c-w>=", desc = "balance" },
 
-	k = { ":wincmd k<CR>", "Cursor up"},
-	j = { ":wincmd j<CR>", "Cursor down"},
-	h = { ":wincmd h<CR>", "Cursor right"},
-	l = { ":wincmd l<CR>", "Cursor left"}
+	{ lhs = "<leader>wK", rhs = "<c-w>K", desc = "Move up" },
+	{ lhs = "<leader>wJ", rhs = "<c-w>J", desc = "Move down" },
+	{ lhs = "<leader>wH", rhs = "<c-w>H", desc = "Move right" },
+	{ lhs = "<leader>wL", rhs = "<c-w>L", desc = "Move left" },
+
+	{ lhs = "<leader>wk", rhs = ":wincmd k<CR>", desc = "Cursor up" },
+	{ lhs = "<leader>wj", rhs = ":wincmd j<CR>", desc = "Cursor down" },
+	{ lhs = "<leader>wh", rhs = ":wincmd h<CR>", desc = "Cursor right" },
+	{ lhs = "<leader>wl", rhs = ":wincmd l<CR>", desc = "Cursor left" },
 }
 
 local buffer_keys = {
-    name = "Buffer",
-    c = {":bd<CR>", "Close" }
+	{ mode = "n" },
+	{ lhs = "<leader>b", group = "buffer" },
+	{ lhs = "<leader>bc", rhs = ":bd<CR>", desc = "Close" },
 }
 
-local mappings = {
-	w = window_keys,
-    b = buffer_keys
-}
-
-local options = {
-	mode = "n",
-	prefix = "<leader>",
-	silent = true,
-	noremap = true
-}
-
-which_key.register(mappings, options)
+which_key.add(window_keys)
+which_key.add(buffer_keys)
