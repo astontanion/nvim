@@ -31,7 +31,7 @@ M.configure = function()
 		format_on_save = {
 			timeout = 1000,
 			async = false,
-			lsp_fallback = true,
+			lsp_fallback = false,
 		},
 	})
 end
