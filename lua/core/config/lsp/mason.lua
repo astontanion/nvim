@@ -32,6 +32,7 @@ M.configure = function()
 			"tsserver",
 			"html",
 			"cssls",
+			"tailwindcss-language-server",
 		},
 	})
 

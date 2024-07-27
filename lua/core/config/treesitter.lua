@@ -24,6 +24,8 @@ M.configure = function()
 			"html",
 			"tsx",
 			"org",
+			"markdown",
+			"markdown_inline",
 		},
 		ignore_install = {},
 		highlight = {
