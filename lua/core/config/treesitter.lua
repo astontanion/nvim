@@ -3,7 +3,9 @@ local M = {}
 M.configure = function()
 	local treesitter_configs_status, treesitter_configs = pcall(require, "nvim-treesitter.configs")
 
-	if not treesitter_configs_status then return end
+	if not treesitter_configs_status then
+		return
+	end
 
 	treesitter_configs.setup({
 		sync_install = false,
@@ -21,13 +23,13 @@ M.configure = function()
 			"css",
 			"html",
 			"tsx",
-			"org"
+			"org",
 		},
 		ignore_install = {},
 		highlight = {
 			enable = true,
 			disable = { "org" },
-			additional_vim_regex_highlighting = { "org" }
+			additional_vim_regex_highlighting = { "org" },
 		},
 		incremental_selection = {
 			enable = true,
@@ -36,7 +38,7 @@ M.configure = function()
 				node_incremental = "grn",
 				scope_incremental = "grc",
 				node_decremental = "grm",
-			}
+			},
 		},
 		rainbow = {
 			enable = false,
@@ -44,8 +46,8 @@ M.configure = function()
 			max_file_lines = nil,
 		},
 		autotag = {
-			enable = true
-		}
+			enable = true,
+		},
 	})
 
 	local parser_config = require("nvim-treesitter.parsers").get_parser_configs()

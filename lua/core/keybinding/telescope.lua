@@ -5,58 +5,57 @@ M.configure = function()
 	local has_telescope, telescope = pcall(require, "telescope")
 	local has_builtin, builtin = pcall(require, "telescope.builtin")
 
-	if not which_key_status then return end
-	if not has_telescope then return end
-	if not has_builtin then return end
+	if not which_key_status then
+		return
+	end
+	if not has_telescope then
+		return
+	end
+	if not has_builtin then
+		return
+	end
 
 	local file_browser = telescope.extensions.file_browser
 	local file_browser_actions = file_browser.actions
 
 	local file_keys = {
-		name = "File",
-		c = { file_browser_actions.create_from_prompt, "Create" },
-		e = {
-			function()
+		{ mode = "n" },
+		{ lhs = "<leader>f", group = "file" },
+		{
+			lhs = "<leader>fe",
+			rhs = function()
 				local current_path = vim.fn.expand("%:p:h")
 				file_browser.file_browser({ path = current_path })
 			end,
-			"Explore"
+			desc = "Explore",
 		},
-		s = { builtin.find_files, "Search" },
+		{ lhs = "<leader>fs", rhs = builtin.find_files, desc = "Search" },
 	}
 
 	local buffer_keys = {
-		name = "Buffer",
-		s = { builtin.buffers, "Search"},
-		c = { builtin.spell_suggest, "Checker" }
+		{ mode = "n" },
+		{ lhs = "<leaderb>", group = "buffer" },
+		{ lhs = "<leader>bs", rhs = builtin.buffers, desc = "Search" },
+		{ lhs = "<leader>bc", rhs = builtin.spell_suggest, desc = "Checker" },
 	}
 
 	local search_keys = {
-		name = "Search",
-		s = { builtin.live_grep, "Fuzzy" },
-		g = { builtin.git_files, "In git" },
+		{ mode = "n" },
+		{ lhs = "<leader>s", group = "search" },
+		{ lhs = "<leader>ss", rhs = builtin.live_grep, desc = "Fuzzy" },
+		{ lhs = "<leader>sg", rhs = builtin.git_files, desc = "In git" },
 	}
 
 	local help_keys = {
-		name = "Help",
-		o = { builtin.help_tags, "Open" }
+		{ mode = "n" },
+		{ lhs = "<leader>h", group = "help" },
+		{ lhs = "<leader>ho", rhs = builtin.help_tags, desc = "Open" },
 	}
 
-	local mappings = {
-		s = search_keys,
-		f = file_keys,
-		b = buffer_keys,
-		h = help_keys
-	}
-
-	local options = {
-		mode = "n",
-		prefix = "<leader>",
-		silent = true,
-		noremap = true
-	}
-
-	which_key.register(mappings, options)
+	which_key.add(file_keys)
+	which_key.add(buffer_keys)
+	which_key.add(search_keys)
+	which_key.add(help_keys)
 end
 
 return M

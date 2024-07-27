@@ -4,44 +4,38 @@ M.configure = function()
 	local which_key_status, which_key = pcall(require, "which-key")
 	local jdtls_status, jdtls = pcall(require, "jdtls")
 
-	if not which_key_status and jdtls_status then return end
+	if not which_key_status and jdtls_status then
+		return
+	end
 
 	local jdtls_keys = {
-		name = "Java",
-		i = { jdtls.organize_imports, "Organize imports" },
-		v = { jdtls.extract_variable, "Extract variable" },
-		c = { jdtls.extract_constant, "Extract constant" },
-		m = { jdtls.extract_method, "Extract method" }
+		{ mode = "n" },
+		{ lhs = "<leader>cj", group = "java" },
+		{ lhs = "<leader>cji", rhs = jdtls.organize_imports, desc = "Organize imports" },
+		{ lhs = "<leader>cjv", rhs = jdtls.extract_variable, desc = "Extract variable" },
+		{ lhs = "<leader>cjc", rhs = jdtls.extract_constant, desc = "Extract constant" },
+		{ lhs = "<leader>cjm", rhs = jdtls.extract_method, desc = "Extract method" },
 	}
 
 	local test_keys = {
-		name = "Test",
-		a = { jdtls.test_class, "Test all" },
-		c = {
-			function()
+		{ mode = "n" },
+		{ lhs = "<leader>ct", group = "test" },
+		{ lhs = "<leader>cta", rhs = jdtls.test_class, desc = "Test all" },
+		{
+			lhs = "<leader>ctc",
+			rhs = function()
 				local file_path = vim.fn.expand("%:p")
 				local test_path = string.gsub(file_path, "(%w+)%.java", "%1Test.java")
 				test_path = string.gsub(test_path, "(/src/main/)", "/src/test/")
 				vim.cmd(":e " .. test_path)
 			end,
-			"Create"
+			desc = "Create",
 		},
-		m = { jdtls.test_nearest_method, "Test method" }
+		{ lhs = "<leader>ctm", rhs = jdtls.test_nearest_method, desc = "Test method" },
 	}
 
-	local mappings = {
-		cj = jdtls_keys,
-		ct = test_keys
-	}
-
-	local options = {
-		mode = "n",
-		prefix = "<leader>",
-		silent = true,
-		noremap = true
-	}
-
-	which_key.register(mappings, options)
+	which_key.add(jdtls_keys)
+	which_key.add(test_keys)
 end
 
 return M
