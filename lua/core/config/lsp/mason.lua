@@ -41,6 +41,7 @@ M.configure = function()
 			"stylua",
 			"prettier",
 			"isort",
+			"yq",
 		},
 	})
 end
