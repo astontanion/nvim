@@ -3,7 +3,9 @@ local M = {}
 M.configure = function()
 	local has_telescope, telescope = pcall(require, "telescope")
 
-	if not has_telescope then return end
+	if not has_telescope then
+		return
+	end
 
 	local file_browser = telescope.extensions.file_browser
 	local file_browser_actions = file_browser.actions
@@ -12,12 +14,12 @@ M.configure = function()
 		defaults = {
 			layout_config = {
 				height = 0.50,
-				width = 0.50
+				width = 0.50,
 			},
 			path_display = {
-				smart = true
+				smart = true,
 			},
-			dynamic_preview_title = true
+			dynamic_preview_title = true,
 		},
 		extensions = {
 			file_browser = {
@@ -38,9 +40,9 @@ M.configure = function()
 				},
 			},
 			["ui-select"] = {
-				require("telescope.themes").get_dropdown {}
-			}
-		}
+				require("telescope.themes").get_dropdown({}),
+			},
+		},
 	})
 
 	telescope.load_extension("file_browser")
