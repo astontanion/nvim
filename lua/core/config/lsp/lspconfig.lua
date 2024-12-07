@@ -1,62 +1,49 @@
 local M = {}
 
-M.configure = function()
-	local lspconfig_status, lspconfig = pcall(require, "lspconfig")
-	local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-
-	if not lspconfig_status then
+M.on_attach = function(client, bufnr)
+	local mapping_status, mapping = pcall(require, "core.keybinding.lspconfig")
+	if not mapping_status then
 		return
 	end
+	mapping.configure(bufnr)
+end
 
-	local on_attach = function(client, bufnr)
-		local mapping_status, mapping = pcall(require, "core.keybinding.lspconfig")
-		if not mapping_status then
-			return
-		end
-		mapping.configure(bufnr)
-	end
-
-	local lsp_flags = {
-		debounce_text_changes = 150,
-	}
-
+M.capabilities = function()
+	local cmp_nvim_lsp_status, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 	if cmp_nvim_lsp_status then
 		capabilities = cmp_nvim_lsp.default_capabilities()
 	end
 
+	return capabilities
+end
+
+M.lsp_flags = function()
+	local lsp_flags = {
+		debounce_text_changes = 150,
+	}
+
+	return lsp_flags
+end
+
+M.configure = function()
+	local lspconfig_status, lspconfig = pcall(require, "lspconfig")
+
+	if not lspconfig_status then
+		return
+	end
+
 	lspconfig.kotlin_language_server.setup({
-		on_attach = on_attach,
-		flags = lsp_flags,
-		capabilities = capabilities,
+		on_attach = M.on_attach,
+		flags = M.lsp_flags(),
+		capabilities = M.capabilities(),
 	})
 
 	lspconfig["pyright"].setup({
-		on_attach = on_attach,
-		flags = lsp_flags,
-		capabilities = capabilities,
-	})
-
-	lspconfig["tsserver"].setup({
-		on_attach = on_attach,
-		filetypes = {
-			"javascript",
-			"javascriptreact",
-			"javascript.jsx",
-			"typescript",
-			"typescriptreact",
-			"typescript.tsx",
-		},
-		cmd = { vim.fn.stdpath("data") .. "/mason/bin/typescript-language-server", "--stdio" },
-		root_pattern = {
-			"package.json",
-			"tsconfig.json",
-			"jsconfig.json",
-			".git",
-		},
-		flags = lsp_flags,
-		capabilities = capabilities,
+		on_attach = M.on_attach,
+		flags = M.lsp_flags(),
+		capabilities = M.capabilities(),
 	})
 
 	lspconfig["tailwindcss"].setup({
@@ -70,11 +57,11 @@ M.configure = function()
 			"typescript.tsx",
 		},
 		cmd = { vim.fn.stdpath("data") .. "/mason/bin/tailwindcss-language-server", "--stdio" },
-		capabilities = capabilities,
+		capabilities = M.capabilities(),
 	})
 
 	lspconfig.lua_ls.setup({
-		on_attach = on_attach,
+		on_attach = M.on_attach,
 		settings = {
 			Lua = {
 				runtime = {
@@ -91,7 +78,7 @@ M.configure = function()
 				},
 			},
 		},
-		capabilities = capabilities,
+		capabilities = M.capabilities(),
 	})
 end
 
