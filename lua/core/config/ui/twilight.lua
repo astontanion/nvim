@@ -7,8 +7,6 @@ M.configure = function()
 		return
 	end
 
-	print("working")
-
 	twilight.setup({
 		dimming = {
 			alpha = 0.25,

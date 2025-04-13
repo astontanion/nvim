@@ -3,7 +3,9 @@ local M = {}
 M.configure = function()
 	local noice_status, noice = pcall(require, "noice")
 
-	if not noice_status then return end
+	if not noice_status then
+		return
+	end
 
 	noice.setup({
 		cmdline = {
@@ -155,16 +157,23 @@ M.configure = function()
 		routes = {
 			{
 				view = "mini",
-				filter = { event = "msg_showmode" }
+				filter = { event = "msg_showmode" },
 			},
 			{
 				filter = {
 					event = "msg_show",
 					kind = "",
-					find = "written"
+					find = "written",
 				},
-				opts = { skip = true }
-			}
+				opts = { skip = true },
+			},
+			{
+				filter = {
+					event = "notify",
+					find = "No information available",
+				},
+				opts = { skip = true },
+			},
 		},
 		status = {},
 		format = {},

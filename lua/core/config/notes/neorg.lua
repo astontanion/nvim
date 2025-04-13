@@ -3,7 +3,9 @@ local M = {}
 M.configure = function()
 	local neorg_status, neorg = pcall(require, "neorg")
 
-	if not neorg_status then return end
+	if not neorg_status then
+		return
+	end
 
 	neorg.setup({
 		load = {
@@ -11,24 +13,24 @@ M.configure = function()
 				config = {
 					folds = true,
 					icon_preset = "basic",
-				}
+				},
 			},
 			["core.dirman"] = {
 				config = {
 					workspaces = {
-						notes = "~/doc/org/notes"
+						notes = "~/Documents/org/notes",
 					},
 					default_workspace = "notes",
 					index = "index.norg",
-					use_popup = true
-				}
+					use_popup = true,
+				},
 			},
 			["core.defaults"] = {},
 			["core.export"] = {},
 			["core.export.markdown"] = {},
 			["core.integrations.treesitter"] = {},
 			["core.syntax"] = {},
-		}
+		},
 	})
 end
 

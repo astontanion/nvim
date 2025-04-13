@@ -28,10 +28,11 @@ vim.opt.incsearch = true
 vim.opt.scrolloff = 999
 vim.opt.updatetime = 50
 
-vim.opt.foldmethod="expr"
-vim.opt.foldexpr="nvim_treesitter#fodlexpr()"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#fodlexpr()"
 vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
 vim.opt.virtualedit = "block"
 vim.opt.inccommand = "split"
 vim.opt.ignorecase = true
+vim.opt.cursorline = true

@@ -1,6 +1,6 @@
 local M = {}
 
-M.on_attach = function(client, bufnr)
+M.on_attach = function(_, bufnr)
 	local mapping_status, mapping = pcall(require, "core.keybinding.lspconfig")
 	if not mapping_status then
 		return
@@ -78,6 +78,12 @@ M.configure = function()
 				},
 			},
 		},
+		capabilities = M.capabilities(),
+	})
+
+	lspconfig.marksman.setup({
+		on_attach = M.on_attach,
+		flags = M.lsp_flags(),
 		capabilities = M.capabilities(),
 	})
 end
