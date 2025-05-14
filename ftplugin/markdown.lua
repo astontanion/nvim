@@ -52,3 +52,27 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 		end
 	end,
 })
+
+local which_key_status, which_key = pcall(require, "which-key")
+
+if not which_key_status then
+	return
+end
+
+local zettel_dir = os.getenv("NOTES_ZETTEL_DIR")
+
+local note_keys = {
+	{ lhs = "<leader>n", group = "Notes" },
+	{
+		lhs = "<leader>nk",
+		rhs = ":!mv '%:p' " .. zettel_dir .. "<cr>:bd<cr>",
+		desc = "Keep",
+	},
+	{
+		lhs = "<leader>nd",
+		rhs = ":!rm '%:p'<cr>:bd<cr>",
+		desc = "Delete",
+	},
+}
+
+which_key.add(note_keys)

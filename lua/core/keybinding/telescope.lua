@@ -52,10 +52,36 @@ M.configure = function()
 		{ lhs = "<leader>ho", rhs = builtin.help_tags, desc = "Open" },
 	}
 
+	local notes_dir = os.getenv("NOTES_DIR")
+
+	local note_keys = {
+		{ mode = "n" },
+		{ lhs = "<leader>n", group = "Notes" },
+		{
+			lhs = "<leader>nf",
+			rhs = function()
+				builtin.find_files({
+					search_dirs = { notes_dir },
+				})
+			end,
+			desc = "Fuzzy",
+		},
+		{
+			lhs = "<leader>ns",
+			rhs = function()
+				builtin.live_grep({
+					search_dirs = { notes_dir },
+				})
+			end,
+			desc = "Fuzzy",
+		},
+	}
+
 	which_key.add(file_keys)
 	which_key.add(buffer_keys)
 	which_key.add(search_keys)
 	which_key.add(help_keys)
+	which_key.add(note_keys)
 end
 
 return M

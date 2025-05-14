@@ -9,7 +9,7 @@ M.configure = function()
 
 	local my_name = os.getenv("MY_NAME")
 	local my_email = os.getenv("MY_EMAIL")
-	local template_dir = os.getenv("MY_NOTE_TEMPLATE")
+	local template_dir = os.getenv("NOTES_TEMPLATE_DIR")
 
 	template.setup({
 		temp_dir = template_dir,
