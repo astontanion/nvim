@@ -10,7 +10,6 @@ M.configure = function()
 	local function on_attach(bufnr)
 		local api = require("nvim-tree.api")
 		api.config.mappings.default_on_attach(bufnr)
-
 	end
 
 	nvim_tree.setup({
@@ -22,7 +21,7 @@ M.configure = function()
 		},
 		renderer = {
 			group_empty = true,
-			root_folder_label = ""
+			root_folder_label = "",
 		},
 		filters = {
 			dotfiles = false,
@@ -31,16 +30,21 @@ M.configure = function()
 			enable = false,
 			show_on_dirs = true,
 			severity = {
-			  min = vim.diagnostic.severity.HINT,
-			  max = vim.diagnostic.severity.ERROR,
+				min = vim.diagnostic.severity.HINT,
+				max = vim.diagnostic.severity.ERROR,
 			},
 			icons = {
-			  hint = "",
-			  info = "",
-			  warning = "",
-			  error = "",
-			}
-		}
+				hint = "",
+				info = "",
+				warning = "",
+				error = "",
+			},
+		},
+		actions = {
+			open_file = {
+				quit_on_open = true,
+			},
+		},
 	})
 end
 

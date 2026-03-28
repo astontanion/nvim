@@ -9,12 +9,12 @@ M.configure = function()
 
 	orgmode.setup({
 		org_agenda_files = {
-			"~/doc/org/inbox.org",
-			"~/doc/org/main.org",
-			"~/doc/org/tickler.org",
+			"~/Documents/org/inbox.org",
+			"~/Documents/org/main.org",
+			"~/Documents/org/tickler.org",
 		},
-		org_default_notes_file = "~/doc/org/inbox.org",
-		org_archive_location = "~/doc/org/archive.org",
+		org_default_notes_file = "~/Documents/org/inbox.org",
+		org_archive_location = "~/Documents/org/archive.org",
 		org_todo_keywords = {
 			"TODO(t)",
 			"INPROGRESS(p)",
@@ -30,24 +30,24 @@ M.configure = function()
 			d = {
 				description = "Thought",
 				template = "* %?\n%U",
-				target = "~/doc/org/inbox.org",
+				target = "~/Documents/org/inbox.org",
 				headline = "Thoughts",
 			},
 			j = {
 				description = "Journal",
 				template = "* %?\nEntered on %U\n %a",
-				target = "~/doc/org/journal.org",
+				target = "~/Documents/org/journal.org",
 			},
 			t = {
 				description = "Task",
 				template = "* TODO %?",
-				target = "~/doc/org/inbox.org",
+				target = "~/Documents/org/inbox.org",
 				headline = "Tasks",
 			},
 			T = {
 				description = "Tickler",
 				template = "* %i%?\n %U",
-				target = "~/doc/org/tickler.org",
+				target = "~/Documents/org/tickler.org",
 				headline = "Tickler",
 			},
 		},

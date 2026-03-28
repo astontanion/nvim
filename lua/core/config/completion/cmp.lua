@@ -23,6 +23,7 @@ M.configure = function()
 			{ name = "nvim_lsp_signature_help" },
 			{ name = "orgmode" },
 			{ name = "luasnip" },
+			{ name = "render-markdown" },
 		},
 		mapping = cmp.mapping.preset.insert({
 			["<C-j>"] = cmp.mapping.scroll_docs(-4),

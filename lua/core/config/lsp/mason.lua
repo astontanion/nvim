@@ -21,6 +21,7 @@ M.configure = function()
 	})
 
 	mason_lspconfig.setup({
+		automatic_installation = true,
 		ensure_installed = {
 			"jdtls",
 			"kotlin_language_server",
@@ -29,10 +30,10 @@ M.configure = function()
 			"pyright",
 
 			-- web
-			"tsserver",
+			"typescript-language-server",
 			"html",
 			"cssls",
-			"tailwindcss-language-server",
+			"marksman",
 		},
 	})
 
