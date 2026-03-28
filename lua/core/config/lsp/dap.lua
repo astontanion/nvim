@@ -1,5 +1,18 @@
 local M = {}
 
+-- @return the web executable
+M.get_web_executable = function()
+	local is_os_linux = vim.fn.has("linux") > 0
+	local is_os_mac = vim.fn.has("mac") > 0
+
+	if is_os_linux then
+		return "/usr/bin/firefox"
+	end
+	if is_os_mac then
+		return "/Applications/Firefox.app/Contents/MacOS/firefox"
+	end
+end
+
 M.configure = function()
 	local has_dap, dap = pcall(require, "dap")
 
@@ -26,7 +39,7 @@ M.configure = function()
 		args = { vim.fn.stdpath("data") .. "/mason/packages/firefox-debug-adapter/dist/adapter.bundle.js" },
 	}
 
-	for _, language in ipairs({ "typescript", "javascript" }) do
+	for _, language in ipairs({ "typescript", "typescriptreact", "javascript", "javascriptreact" }) do
 		dap.configurations[language] = {
 			{
 				name = "Debug with Firefox",
@@ -35,7 +48,7 @@ M.configure = function()
 				reAttach = true,
 				url = "http://localhost:5173",
 				webRoot = "${workspaceFolder}",
-				firefoxExecutable = "/Applications/Firefox.app/Contents/MacOS/firefox",
+				firefoxExecutable = M.get_web_executable(),
 			},
 		}
 	end

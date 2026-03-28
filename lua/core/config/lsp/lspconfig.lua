@@ -21,7 +21,7 @@ end
 
 M.lsp_flags = function()
 	local lsp_flags = {
-		debounce_text_changes = 150,
+		debounce_text_changes = 80,
 	}
 
 	return lsp_flags
@@ -34,11 +34,24 @@ M.configure = function()
 		return
 	end
 
-	lspconfig.kotlin_language_server.setup({
+	local jdtls = require("core.config.lsp.server.jdtls")
+	vim.lsp.config("jdtls", {
+		on_attach = jdtls.on_attach,
+		flags = M.lsp_flags(),
+		capabilities = jdtls.capabilities(),
+		init_options = jdtls.init_options(),
+		settings = jdtls.settings(),
+	})
+	vim.lsp.enable("jdtls")
+
+	vim.lsp.config("kotlin_lsp", {
+		filetypes = { "kotlin", "kt", "kts" },
 		on_attach = M.on_attach,
 		flags = M.lsp_flags(),
 		capabilities = M.capabilities(),
 	})
+
+	vim.lsp.enable("kotlin_lsp")
 
 	lspconfig["pyright"].setup({
 		on_attach = M.on_attach,

@@ -14,6 +14,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	{ import = "core.plugins.highlight" },
 	{ import = "core.plugins.theme" },
 	{ import = "core.plugins.ui" },
 	{ import = "core.plugins.completion" },
