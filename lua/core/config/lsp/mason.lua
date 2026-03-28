@@ -24,16 +24,19 @@ M.configure = function()
 		automatic_installation = true,
 		ensure_installed = {
 			"jdtls",
-			"kotlin_language_server",
+			"kotlin-ls",
 			"ltex",
 			"lua_ls",
 			"pyright",
 
 			-- web
-			"typescript-language-server",
+			"ts_ls",
 			"html",
 			"cssls",
 			"marksman",
+		},
+		automatic_enable = {
+			exclude = { "jdtls" },
 		},
 	})
 
@@ -43,6 +46,7 @@ M.configure = function()
 			"prettier",
 			"isort",
 			"yq",
+			"java-test",
 		},
 	})
 end
