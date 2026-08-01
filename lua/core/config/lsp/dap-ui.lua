@@ -29,24 +29,28 @@ M.configure = function()
 	end
 
 	local close_debugger = function()
-		dapui.close()
-
 		if debug_tab and vim.api.nvim_tabpage_is_valid(debug_tab) then
 			vim.api.nvim_exec2("tabclose " .. vim.api.nvim_tabpage_get_number(debug_tab), { output = false })
 		end
 
+		dapui.close()
+
 		debug_tab = nil
 	end
 
-	dap.listeners.after.event_initialized["dapui_config"] = function()
+	dap.listeners.before.attach.dapui_config = function()
 		open_debugger()
 	end
 
-	dap.listeners.before.event_terminated["dapui_config"] = function()
+	dap.listeners.before.launch.dapui_config = function()
+		open_debugger()
+	end
+
+	dap.listeners.before.event_terminated.dapui_config = function()
 		close_debugger()
 	end
 
-	dap.listeners.before.event_exited["dapui_config"] = function()
+	dap.listeners.before.event_exited.dapui_config = function()
 		close_debugger()
 	end
 end

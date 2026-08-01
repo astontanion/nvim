@@ -53,7 +53,7 @@ end
 M.cmd = function()
 	local home = os.getenv("HOME")
 	local jdtls_dir = vim.fn.stdpath("data") .. "/mason/packages/jdtls"
-	local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(M.root_dir(), ":p:h:t")
+	local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(M.get_root_dir(), ":p:h:t")
 	return {
 		"java",
 		"-Declipse.application=org.eclipse.jdt.ls.core.id1",
@@ -111,10 +111,7 @@ M.on_attach = function(_, bufnr)
 
 	java_mapping.configure()
 
-	jdtls.setup_dap({
-		hotcodereplace = "auto",
-		config_overrides = {},
-	})
+	require("jdtls.dap").setup_dap()
 end
 
 M.init_options = function()
@@ -126,6 +123,7 @@ M.init_options = function()
 	}
 
 	local java_test_bundles = vim.split(vim.fn.glob(java_test_dir .. "/*.jar", 1), "\n")
+
 	local excluded = {
 		"com.microsoft.java.test.runner-jar-with-dependencies.jar",
 		"jacocoagent.jar",
@@ -197,7 +195,7 @@ M.configure = function()
 		},
 		capabilities = M.capabilities(),
 		on_attach = M.on_attach(),
-		root_dir = M.root_dir(),
+		root_dir = M.get_root_dir(),
 		settings = M.settings(),
 		cmd = M.cmd(),
 		init_options = M.init_options(),

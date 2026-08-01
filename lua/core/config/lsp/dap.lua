@@ -27,11 +27,19 @@ M.configure = function()
 		{
 			type = "java",
 			request = "attach",
-			name = "Open liberty (attach) - remote",
+			name = "Debug (Attach) - Remote",
 			hostName = "127.0.0.1",
 			port = 7777,
 		},
 	}
+
+	-- dap.adapters.java = function(callback)
+	-- 	callback({
+	-- 		type = "server",
+	-- 		host = "127.0.0.1",
+	-- 		port = 7777,
+	-- 	})
+	-- end
 
 	dap.adapters.firefox = {
 		type = "executable",

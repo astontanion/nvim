@@ -7,12 +7,6 @@ return {
 		},
 	},
 	{
-		"williamboman/mason-lspconfig.nvim",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-		},
-	},
-	{
 		"nvimdev/lspsaga.nvim",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
