@@ -24,7 +24,7 @@ M.configure = function()
 		automatic_installation = true,
 		ensure_installed = {
 			"jdtls",
-			"kotlin-ls",
+			"kotlin_lsp",
 			"ltex",
 			"lua_ls",
 			"pyright",

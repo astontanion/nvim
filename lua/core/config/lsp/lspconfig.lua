@@ -28,20 +28,18 @@ M.lsp_flags = function()
 end
 
 M.configure = function()
-	local lspconfig_status, lspconfig = pcall(require, "lspconfig")
-
-	if not lspconfig_status then
-		return
-	end
-
 	local jdtls = require("core.config.lsp.server.jdtls")
+
 	vim.lsp.config("jdtls", {
 		on_attach = jdtls.on_attach,
 		flags = M.lsp_flags(),
 		capabilities = jdtls.capabilities(),
 		init_options = jdtls.init_options(),
 		settings = jdtls.settings(),
+		cmd = jdtls.cmd(),
+		root_dir = jdtls.get_root_dir(),
 	})
+
 	vim.lsp.enable("jdtls")
 
 	vim.lsp.config("kotlin_lsp", {
@@ -53,13 +51,15 @@ M.configure = function()
 
 	vim.lsp.enable("kotlin_lsp")
 
-	lspconfig["pyright"].setup({
+	vim.lsp.config("pyright", {
 		on_attach = M.on_attach,
 		flags = M.lsp_flags(),
 		capabilities = M.capabilities(),
 	})
 
-	lspconfig["tailwindcss"].setup({
+	vim.lsp.enable("pyright")
+
+	vim.lsp.config("tailwindcss", {
 		filetypes = {
 			"html",
 			"javascript",
@@ -73,7 +73,9 @@ M.configure = function()
 		capabilities = M.capabilities(),
 	})
 
-	lspconfig.lua_ls.setup({
+	vim.lsp.enable("tailwindcss")
+
+	vim.lsp.config("lua_ls", {
 		on_attach = M.on_attach,
 		settings = {
 			Lua = {
@@ -94,11 +96,15 @@ M.configure = function()
 		capabilities = M.capabilities(),
 	})
 
-	lspconfig.marksman.setup({
+	vim.lsp.enable("lua_ls")
+
+	vim.lsp.config("marksman", {
 		on_attach = M.on_attach,
 		flags = M.lsp_flags(),
 		capabilities = M.capabilities(),
 	})
+
+	vim.lsp.enable("marksman")
 end
 
 return M
